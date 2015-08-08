@@ -63,7 +63,7 @@ namespace LamedhPos.UI.Konsole
 
     class Program2
     {
-        static void Main(string[] args)
+        static void Main2(string[] args)
         {
             Kuda k = new Kuda();
             k.Jingkrak();
