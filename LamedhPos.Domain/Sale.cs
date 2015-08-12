@@ -12,17 +12,27 @@ namespace LamedhPos.Domain
         public DateTime Time { get; set; }
 
         public Employee Cashier { get; set; }
-        public List<Product> Products { get; set; }
+        public IList<SaleLineItem> LineItems { get; private set; }
 
         public Sale()
         {
-            Products = new List<Product>();
+            LineItems = new List<SaleLineItem>();
             Time = DateTime.Now;
         }
 
         public decimal GetTotal()
         {
-            return Products.Sum(p => p.UnitPrice);
+            return LineItems.Sum(sli => sli.GetSubtotal());
+        }
+
+        public void AddLineItem(Product product, int quantity)
+        {
+            LineItems.Add(new SaleLineItem { Product = product, Quantity = quantity });
+        }
+
+        public void AddLineItem(Product product)
+        {
+            AddLineItem(product, 1);
         }
     }
 }
