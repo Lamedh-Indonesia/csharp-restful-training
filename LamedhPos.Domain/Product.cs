@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LamedhPos.Domain
 {
-    public class Product
+    public class Product : EntityBase
     {
         private decimal unitPrice;
 

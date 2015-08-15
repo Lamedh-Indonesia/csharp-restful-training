@@ -11,37 +11,15 @@ namespace LamedhPos.UI.Konsole
     {
         static void Main(string[] args)
         {
-            int[] nums = new int[] { 3, 2, 1, 10, };
-            nums[1] = 4;
-            for (int i = 0; i < nums.Length; i++)
-                Console.WriteLine(nums[i]);
+            var e = new Employee { Id = 1, Code = "E01", Name = "Suyama" };
+            var e1 = new Employee { Id = 1, Code = "E01", Name = "Suyama" };
+            Console.WriteLine(e == e1);
+            Object n = e;
+            Console.WriteLine(e.Equals(e1));
+            Console.WriteLine(e.Equals("budi"));
 
-            var ns = new List<int>();
-            ns.Add(5);
-            ns.Add(4);
-            ns.Add(10);
-            ns[0] = 3;
-            ns.Remove(3);
-            for (int i = 0; i < ns.Count; i++)
-                Console.WriteLine(ns[i]);
-            foreach (var n in nums)
-                Console.WriteLine(n);
-
-            var emps = new List<Employee>();
-            emps.Add(new Employee { Code = "E01", Name = "Suyama", });
-            emps.Add(new Employee { Code = "E02", Name = "Nancy", });
-            foreach (var e in emps)
-                Console.WriteLine(e.Name);
-        }
-
-        private static void ShowReceipt(Sale sale)
-        {
-            Console.WriteLine(sale.Code);
-            Console.WriteLine(sale.Time);
-            Console.WriteLine(sale.Cashier.Name);
-            foreach (var sli in sale.LineItems)
-                Console.WriteLine("{0} {1}", sli.Product.Name, sli.UnitPrice);
-            Console.WriteLine("-------------+\n{0}", sale.GetTotal());
+            Console.WriteLine(e.GetHashCode());
+            Console.WriteLine(e1.GetHashCode());
         }
     }
 }

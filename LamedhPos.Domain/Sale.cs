@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LamedhPos.Domain
 {
-    public class Sale
+    public class Sale : EntityBase
     {
         public string Code { get; set; }
         public DateTime Time { get; set; }
@@ -25,14 +25,23 @@ namespace LamedhPos.Domain
             return LineItems.Sum(sli => sli.GetSubtotal());
         }
 
-        public void AddLineItem(Product product, int quantity)
+        public void AddLineItem(Product product, int quantity = 1)
         {
-            LineItems.Add(new SaleLineItem { Product = product, Quantity = quantity });
+            SaleLineItem lineItem = GetLineItem(product);
+            if (lineItem == null)
+            {
+                lineItem = new SaleLineItem { Product = product, };
+                LineItems.Add(lineItem);
+            }
+            lineItem.Quantity += quantity;
         }
 
-        public void AddLineItem(Product product)
+        public SaleLineItem GetLineItem(Product product)
         {
-            AddLineItem(product, 1);
+            foreach (var sli in LineItems)
+                if (sli.Product.Equals(product))
+                    return sli;
+            return null;
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LamedhPos.Domain
 {
-    public class Employee
+    public class Employee : EntityBase
     {
         public string Code { get; set; }
         public string Name { get; set; }

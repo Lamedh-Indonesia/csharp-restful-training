@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LamedhPos.Domain
 {
-    public class SaleLineItem
+    public class SaleLineItem : EntityBase
     {
         private Product product;
 
@@ -26,11 +26,6 @@ namespace LamedhPos.Domain
         public decimal GetSubtotal()
         {
             return UnitPrice * Quantity;
-        }
-
-        public SaleLineItem()
-        {
-
         }
     }
 }

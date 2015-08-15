@@ -34,6 +34,18 @@ namespace LamedhPos.Domain.Tests
             Assert.AreEqual(500m, sale.GetTotal());
         }
 
+        [TestMethod]
+        public void add_sli_with_same_product_will_change_quantity()
+        {
+            var sale = new Sale();
+            sale.AddLineItem(momogi, 2);
+            Assert.AreEqual(1, sale.LineItems.Count);
+            sale.AddLineItem(momogi);
+            Assert.AreEqual(1, sale.LineItems.Count);
+            var sli = sale.GetLineItem(momogi);
+            Assert.AreEqual(3, sli.Quantity);
+        }
+
         [TestInitialize]
         public void Initialize()
         {
