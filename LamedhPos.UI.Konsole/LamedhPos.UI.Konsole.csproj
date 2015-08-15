@@ -32,7 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,16 +50,22 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Program2.cs" />
+    <Compile Include="ProgramEF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scratch.cs" />
+    <Compile Include="ProgramDb.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LamedhPos.Domain\LamedhPos.Domain.csproj">
       <Project>{c5759722-be04-4e91-94ff-476fc9d4e0e4}</Project>
       <Name>LamedhPos.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LamedhPos.Infras.Data.SqlRepositories\LamedhPos.Infras.Data.SqlRepositories.csproj">
+      <Project>{8c6f4e14-af15-45eb-bc6e-49a585cb36c5}</Project>
+      <Name>LamedhPos.Infras.Data.SqlRepositories</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
