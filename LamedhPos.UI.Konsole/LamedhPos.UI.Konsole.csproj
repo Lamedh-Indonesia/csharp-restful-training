@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LamedhPos.UI.Konsole</RootNamespace>
     <AssemblyName>LamedhPos.UI.Konsole</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -62,6 +63,10 @@
     <ProjectReference Include="..\LamedhPos.Domain\LamedhPos.Domain.csproj">
       <Project>{c5759722-be04-4e91-94ff-476fc9d4e0e4}</Project>
       <Name>LamedhPos.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LamedhPos.Infras.Data.EFRepositories\LamedhPos.Infras.Data.EFRepositories.csproj">
+      <Project>{a0d9aa82-3281-45e8-a559-247a56ddae04}</Project>
+      <Name>LamedhPos.Infras.Data.EFRepositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\LamedhPos.Infras.Data.SqlRepositories\LamedhPos.Infras.Data.SqlRepositories.csproj">
       <Project>{8c6f4e14-af15-45eb-bc6e-49a585cb36c5}</Project>

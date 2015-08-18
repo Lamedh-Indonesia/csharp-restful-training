@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LamedhPos.Infras.Data.SqlRepositories
 {
-    public class EmployeeSqlRepository
+    public class EmployeeSqlRepository : IDisposable
     {
         private SqlConnection connection;
 
@@ -50,6 +50,11 @@ namespace LamedhPos.Infras.Data.SqlRepositories
                     yield return newEmployee;
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            connection.Close();
         }
     }
 }

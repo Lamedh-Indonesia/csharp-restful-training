@@ -47,16 +47,17 @@ namespace LamedhPos.UI.Konsole
 
         static void MainRepo(string[] args)
         {
-            var empRepo = new EmployeeSqlRepository();
+            using (var empRepo = new EmployeeSqlRepository())
+            {
+                //Employee employee = GetEmployeeByCode("E01");
+                var employee = empRepo.GetByCode("E01");
+                Console.WriteLine("{0} {1}", employee.Name, employee.Birthdate);
 
-            //Employee employee = GetEmployeeByCode("E01");
-            var employee = empRepo.GetByCode("E01");
-            Console.WriteLine("{0} {1}", employee.Name, employee.Birthdate);
-
-            //var emps = GetAllEmployee();
-            var emps = empRepo.GetAll();
-            foreach (var e in emps)
-                Console.WriteLine(e.Name);
+                //var emps = GetAllEmployee();
+                var emps = empRepo.GetAll();
+                foreach (var e in emps)
+                    Console.WriteLine(e.Name);
+            }
         }
 
         static IEnumerable<Employee> GetAllEmployee()

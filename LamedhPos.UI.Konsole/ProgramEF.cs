@@ -1,4 +1,5 @@
 ﻿using LamedhPos.Domain;
+using LamedhPos.Infras.Data.EFRepositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -21,10 +22,19 @@ namespace LamedhPos.UI.Konsole
     {
         static void Main(string[] args)
         {
+            var employeeRepo = new EmployeeEFRepo();
+            var employee = employeeRepo.GetByCode("E20");
+            Console.WriteLine(employee.Code);
+            Console.WriteLine(employee.Name);
+
+            //var e20 = new Employee { Code = "E20", Name = "Margareth Peacock" };
+            //employeeRepo.Save(e20);
+
+            Console.WriteLine(employee.Id);
+            employeeRepo.Dispose();
+
             var ctx = new LamedhPosContext();
-            var query = ctx.Employees.Where(e => e.Name.Contains("Su"));
-            foreach (var e in query)
-                Console.WriteLine(e.Name);
+            ctx.Employees.Remove(new Employee { Id = 5 });
         }
     }
 }
