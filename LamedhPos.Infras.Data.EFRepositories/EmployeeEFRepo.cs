@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LamedhPos.Infras.Data.EFRepositories
 {
-    public class EmployeeEFRepo : EFRepositoryBase<Employee>, IDisposable
+    public class EmployeeEFRepo : EFRepositoryBase<Employee>, IEmployeeRepository, IDisposable
     {
         public Employee GetByCode(string code)
         {

@@ -11,32 +11,45 @@ namespace LamedhPos.Infras.Data.EFRepositories
     public abstract class EFRepositoryBase<TEntity> where TEntity : EntityBase
     {
         protected LamedhPosContext posContext;
+        private DbSet<TEntity> dbSet;
 
         public EFRepositoryBase()
         {
             posContext = new LamedhPosContext();
+            dbSet = GetDbSet();
+        }
+
+        public int GetCount()
+        {
+            return dbSet.Count();
         }
 
         public TEntity GetById(int id)
         {
-            return GetDbSet().Single(e => e.Id == id);
+            return dbSet.Single(e => e.Id == id);
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            return GetDbSet();
+            return dbSet;
         }
 
         public void Save(TEntity entity)
         {
-            GetDbSet().Add(entity);
+            if (entity.Id == 0)
+                dbSet.Add(entity);
+            else
+            {
+                dbSet.Attach(entity);
+                posContext.Entry(entity).State = EntityState.Modified;
+            }
             posContext.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var entity = GetById(id);
-            GetDbSet().Remove(entity);
+            dbSet.Remove(entity);
             posContext.SaveChanges();
         }
 
