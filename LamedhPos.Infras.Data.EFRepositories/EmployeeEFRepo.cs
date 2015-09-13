@@ -8,11 +8,16 @@ using System.Threading.Tasks;
 
 namespace LamedhPos.Infras.Data.EFRepositories
 {
-    public class EmployeeEFRepo : EFRepositoryBase<Employee>, IEmployeeRepository, IDisposable
+    public class EmployeeEFRepo : EFRepositoryBase<Employee, LamedhPosContext>, IEmployeeRepository, IDisposable
     {
         public Employee GetByCode(string code)
         {
             return posContext.Employees.Single(e => e.Code == code);
+        }
+
+        public IEnumerable<Employee> Search(string key)
+        {
+            return posContext.Employees.Where(e => e.Code.Contains(key) || e.Name.Contains(key));
         }
 
         protected override DbSet<Employee> GetDbSet()

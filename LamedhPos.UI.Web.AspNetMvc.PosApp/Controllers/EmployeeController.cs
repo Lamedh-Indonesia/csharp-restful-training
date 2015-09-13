@@ -11,10 +11,12 @@ namespace LamedhPos.UI.Web.AspNetMvc.PosApp.Controllers
     public class EmployeeController : Controller
     {
         private EmployeeEFRepo employeeRepo;
+        private EmployeeService service;
 
         public EmployeeController()
         {
             employeeRepo = new EmployeeEFRepo();
+            service = new EmployeeService(employeeRepo);
         }
 
         public ActionResult Index()
@@ -31,8 +33,8 @@ namespace LamedhPos.UI.Web.AspNetMvc.PosApp.Controllers
 
         public ActionResult Create()
         {
-            int count = employeeRepo.GetCount();
-            return View();
+            var employee = service.New();
+            return View(employee);
         }
 
         [HttpPost]

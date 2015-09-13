@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LamedhPos.Infras.Data.SqlRepositories
 {
-    public class EmployeeSqlRepository : IDisposable
+    public class EmployeeSqlRepository : IDisposable, IEmployeeRepository
     {
         private SqlConnection connection;
 
@@ -23,6 +23,7 @@ namespace LamedhPos.Infras.Data.SqlRepositories
             var command = connection.CreateCommand();
             command.CommandText = "select * from Employees where Code = @code";
             command.Parameters.AddWithValue("code", code);
+            using (command)
             using (var reader = command.ExecuteReader())
             {
                 reader.Read();
@@ -34,9 +35,9 @@ namespace LamedhPos.Infras.Data.SqlRepositories
         {
             var command = connection.CreateCommand();
             command.CommandText = "select * from Employees";
+            using (command)
             using (var reader = command.ExecuteReader())
             {
-                //var result = new List<Employee>();
                 while (reader.Read())
                 {
                     var newEmployee = new Employee
@@ -46,10 +47,37 @@ namespace LamedhPos.Infras.Data.SqlRepositories
                         Name = (string)reader["Name"],
                         Birthdate = (DateTime)reader["Birthdate"],
                     };
-                    //result.Add(newEmployee);
                     yield return newEmployee;
                 }
             }
+        }
+
+        public IEnumerable<Employee> Search(string search)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetCount()
+        {
+            var command = connection.CreateCommand();
+            command.CommandText = "select count(*) from Employees";
+            using (command)
+                return (int)command.ExecuteScalar();
+        }
+
+        public Employee GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save(Employee entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public void Dispose()

@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace LamedhPos.Domain
 {
-    public interface IEmployeeRepository
+    public interface IEmployeeRepository : IRepository<Employee>, IDisposable
     {
         Employee GetByCode(string code);
-        int GetCount();
-        Employee GetById(int id);
-        IEnumerable<Employee> GetAll();
-        void Save(Employee entity);
-        void Delete(int id);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using LamedhPos.Domain;
 using LamedhPos.Infras.Data.EFRepositories;
+using LamedhPos.Infras.Data.SqlRepositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,9 +14,11 @@ namespace LamedhPos.UI.Konsole
     {
         static void Main(string[] args)
         {
-            var employeeRepo = new EmployeeEFRepo();
+            //var employeeRepo = new EmployeeEFRepo();
+            var employeeRepo = new EmployeeSqlRepository();
             var service = new EmployeeService(employeeRepo);
-            Console.WriteLine(service.GenerateCode());
+            var e = service.New();
+            Console.WriteLine(e.Code);
         }
     }
 }

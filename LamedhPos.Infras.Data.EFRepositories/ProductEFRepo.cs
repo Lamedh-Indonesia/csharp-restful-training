@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LamedhPos.Infras.Data.EFRepositories
 {
-    public class ProductEFRepo : EFRepositoryBase<Product>, IDisposable
+    public class ProductEFRepo : EFRepositoryBase<Product, LamedhPosContext>, IDisposable
     {
         public Product GetByCode(string code)
         {

@@ -44,6 +44,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LamedhCommon.Domains\LamedhCommon.Domains.csproj">
+      <Project>{50a1cf8d-b649-4760-93ac-a931ebfa1236}</Project>
+      <Name>LamedhCommon.Domains</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LamedhPos.Domain\LamedhPos.Domain.csproj">
       <Project>{c5759722-be04-4e91-94ff-476fc9d4e0e4}</Project>
       <Name>LamedhPos.Domain</Name>

@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace LamedhPos.Infras.Data.EFRepositories
 {
-    public abstract class EFRepositoryBase<TEntity> where TEntity : EntityBase
+    public abstract class EFRepositoryBase<TEntity, TContext> 
+        where TEntity : EntityBase 
+        where TContext : DbContext, new()
     {
-        protected LamedhPosContext posContext;
+        protected TContext posContext;
         private DbSet<TEntity> dbSet;
 
         public EFRepositoryBase()
         {
-            posContext = new LamedhPosContext();
+            posContext = new TContext();
             dbSet = GetDbSet();
         }
 
